@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        {% for i in user %}
+        <tr>
+            <td>{{i.user_name}}</td>
+            <td><a href="{% url 'webchat:chatpage' i.id %}">Chat</a></td>
+        </tr>
+        {% endfor %}
+        <!-- <input type="file" name="photo" id="photo">
+        <button id="pic" onclick="getPhoto()" type="submit">Add</button> -->
+    </table>
+</body>
+
+</html>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                // Check if this cookie string begins with the name we want
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    function getPhoto() {
+        var fileInput = document.getElementById("photo");
+        var file = fileInput.files[0]; // Access the file from the input element
+
+        var fd = new FormData();
+        fd.append("file", file);
+
+        var ur = "";
+
+        var csrftoken = getCookie('csrftoken'); // Function to retrieve CSRF token
+
+        $.ajax({
+            type: 'POST',
+            url: ur,
+            data: fd,
+            processData: false,
+            contentType: false,
+            headers: { "X-CSRFToken": csrftoken }, // Include CSRF token in headers
+            success: function (data) {
+                // Handle success here
+                alert("Hai")
+            },
+        });
+    }
+
+
+</script> -->
