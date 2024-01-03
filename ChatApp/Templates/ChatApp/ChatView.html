@@ -7,6 +7,9 @@
 </head>
 <body>
         {% for i in data %}
+        <div class="date-con">
+            {{i.chat_time}}
+        </div>
         {% if i.user_from_id == tid %}
         {% if i.chat_file != '' %}
         <div class="par-r-mess">
