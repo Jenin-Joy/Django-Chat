@@ -41,3 +41,7 @@ def ajaxchatview(request):
     user = tbl_user.objects.get(id=request.session["uid"])
     chat_data = tbl_chat.objects.filter((Q(user_from=user) | Q(user_to=user)) & (Q(user_from=tid) | Q(user_to=tid))).order_by('chat_time')
     return render(request,"ChatApp/ChatView.html",{"data":chat_data,"tid":int(tid)})
+
+def clearchat(request):
+    tbl_chat.objects.filter(Q(user_from=request.session["uid"]) & Q(user_to=request.GET.get("tid")) | (Q(user_from=request.GET.get("tid")) & Q(user_to=request.session["uid"]))).delete()
+    return render(request,"ChatApp/ClearChat.html",{"msg":"Chat Deleted Sucessfully...."})

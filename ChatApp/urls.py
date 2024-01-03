@@ -8,4 +8,5 @@ urlpatterns = [
     path('ajaxchat/',views.ajaxchat,name="ajaxchat"),
     path('ajaxchatview/',views.ajaxchatview,name="ajaxchatview"),
     # path('ajaxphoto/',views.ajaxphoto,name="ajaxphoto"),
+    path('clearchat/',views.clearchat,name="clearchat"),
 ]
