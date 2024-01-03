@@ -233,6 +233,26 @@
         background-color: rgba(255, 255, 255, 0.729);
         position: absolute;
     }
+    .profile {
+        display: none;
+        width: 100%;
+        background-color: #ffffffed;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+    .profile-close {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .cl-ic {
+        font-size: 27px;
+        color: #d4d2d2;
+    }
 </style>
 <body>
     <div class="blur-page" id="b-page">
@@ -242,12 +262,22 @@
             <div class="sk-cube4 sk-cube"></div>
             <div class="sk-cube3 sk-cube"></div>
         </div>
+    </div>
+    <div class="profile" id="profile">
+        <div>
+            <div class="profile-close" onclick="close_profile()">
+                <i class="fa-regular fa-circle-xmark cl-ic"></i>
+            </div>
+            <div>
+                <img src="https://cdni.autocarindia.com/utils/imageresizer.ashx?n=https://cms.haymarketindia.net/model/uploads/modelimages/Hyundai-Grand-i10-Nios-200120231541.jpg&w=872&h=578&q=75&c=1" width="300px" height="300px" alt="">
+            </div>
         </div>
+    </div>    
     <div class="par-card">
         <div class="chat-card">
             <div class="head-sec" id="changeable">
                 <div class="content">
-                    <div>
+                    <div  onclick="open_profile()">
                         <img src="https://cdni.autocarindia.com/utils/imageresizer.ashx?n=https://cms.haymarketindia.net/model/uploads/modelimages/Hyundai-Grand-i10-Nios-200120231541.jpg&w=872&h=578&q=75&c=1" width="40px" height="40px" style="border-radius: 50%;" alt="">
                     </div>
                     <div class="font">
@@ -323,7 +353,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
       document.getElementById("b-page").style.display = "none"
-
+      document.getElementById("profile").style.display = "none"
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -381,8 +411,8 @@
         });
     };
 
-    viewChat()
-    setInterval(viewChat,800)
+    // viewChat()
+    // setInterval(viewChat,800)
 
     function handleOption() {
         let Check = document.getElementById('option-div')
@@ -408,4 +438,12 @@
             }
         });
     };
+
+    function close_profile() {
+        document.getElementById("profile").style.display = "none"
+    }
+
+    function open_profile() {
+        document.getElementById("profile").style.display = "flex"
+    }
 </script>
