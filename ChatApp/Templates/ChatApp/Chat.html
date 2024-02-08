@@ -388,30 +388,37 @@
 
     function sendChat(tid) {
         var msg = document.getElementById("txt_msg").value;
-        var fileInput = document.getElementById("photo_data");
-        var file = fileInput.files[0];
-        var fd = new FormData()
-        fd.append("file",file)
-        fd.append("tid",tid)
-        fd.append("msg",msg)
-        var ur = "{% url 'webchat:ajaxchat' %}"
-        var csrftoken = getCookie('csrftoken');
-        $.ajax({
-            type:'POST',
-            url: ur,
-            data: fd,
-            processData: false,
-            contentType: false,
-            headers: { "X-CSRFToken": csrftoken }, // Include CSRF token in headers
-            success: function (data) {
-                   // $("#selplace").html(data);
-                document.getElementById('txt_msg').value = "" 
-                document.getElementById("photo_data").value = ""
-                $('#sc-down').animate({scrollTop: $('#sc-down')[0].scrollHeight});
-                var element = document.getElementById("sc-down");
-                element.scrollTop = element.scrollHeight - element.clientHeight;
-            },
-        });
+        if (msg == "")
+        {
+
+        }
+        else
+        {
+            var fileInput = document.getElementById("photo_data");
+            var file = fileInput.files[0];
+            var fd = new FormData()
+            fd.append("file",file)
+            fd.append("tid",tid)
+            fd.append("msg",msg)
+            var ur = "{% url 'webchat:ajaxchat' %}"
+            var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                type:'POST',
+                url: ur,
+                data: fd,
+                processData: false,
+                contentType: false,
+                headers: { "X-CSRFToken": csrftoken }, // Include CSRF token in headers
+                success: function (data) {
+                    // $("#selplace").html(data);
+                    document.getElementById('txt_msg').value = "" 
+                    document.getElementById("photo_data").value = ""
+                    $('#sc-down').animate({scrollTop: $('#sc-down')[0].scrollHeight});
+                    var element = document.getElementById("sc-down");
+                    element.scrollTop = element.scrollHeight - element.clientHeight;
+                },
+            });
+        }
     };
 
     function viewChat() {
