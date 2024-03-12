@@ -18,23 +18,10 @@ def chatpage(request,id):
     return render(request,"ChatApp/Chat.html",{"user":user})
 
 def ajaxchat(request):
-    file = request.FILES.get("file")
-    if file != '':
-        if request.POST.get("msg") != '':
-            from_user = tbl_user.objects.get(id=request.session["uid"])
-            to_user = tbl_user.objects.get(id=request.POST.get("tid"))
-            tbl_chat.objects.create(chat_content=request.POST.get("msg"),chat_time=datetime.now(),user_from=from_user,user_to=to_user,chat_file=request.FILES.get("file"))
-            return render(request,"ChatApp/Chat.html")
-        else:
-            from_user = tbl_user.objects.get(id=request.session["uid"])
-            to_user = tbl_user.objects.get(id=request.POST.get("tid"))
-            tbl_chat.objects.create(chat_content="",chat_time=datetime.now(),user_from=from_user,user_to=to_user,chat_file=request.FILES.get("file"))
-            return render(request,"ChatApp/Chat.html")
-    else:
-        from_user = tbl_user.objects.get(id=request.session["uid"])
-        to_user = tbl_user.objects.get(id=request.POST.get("tid"))
-        tbl_chat.objects.create(chat_content=request.POST.get("msg"),chat_time=datetime.now(),user_from=from_user,user_to=to_user,chat_file="")
-        return render(request,"ChatApp/Chat.html")
+    from_user = tbl_user.objects.get(id=request.session["uid"])
+    to_user = tbl_user.objects.get(id=request.POST.get("tid"))
+    tbl_chat.objects.create(chat_content=request.POST.get("msg"),chat_time=datetime.now(),user_from=from_user,user_to=to_user,chat_file=request.FILES.get("file"))
+    return render(request,"ChatApp/Chat.html")
 
 def ajaxchatview(request):
     tid = request.GET.get("tid")

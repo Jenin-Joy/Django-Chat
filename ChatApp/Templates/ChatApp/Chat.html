@@ -388,14 +388,14 @@
 
     function sendChat(tid) {
         var msg = document.getElementById("txt_msg").value;
-        if (msg == "")
+        var fileInput = document.getElementById("photo_data");
+        var file = fileInput.files[0];
+        if (msg.trim() === "" && !file)
         {
 
         }
         else
         {
-            var fileInput = document.getElementById("photo_data");
-            var file = fileInput.files[0];
             var fd = new FormData()
             fd.append("file",file)
             fd.append("tid",tid)
